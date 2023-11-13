@@ -17,8 +17,6 @@ lazy val root = (project in file("."))
   .settings(
     name := "simplifier-plugin-base",
     compileSettings,
-    SimplifierAzureRepo.settings,
-    publishTo := Some(SimplifierAzureRepo.resolver),
 
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-actor" % akkaV withSources() withJavadoc(),
