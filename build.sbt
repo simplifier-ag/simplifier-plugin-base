@@ -1,4 +1,4 @@
-ThisBuild / version := "0.9.9"
+ThisBuild / version := "0.9.0-SNAPSHOT"
 
 ThisBuild / scalaVersion := "2.12.15"
 
@@ -16,6 +16,7 @@ lazy val compileSettings = Seq(
 lazy val root = (project in file("."))
   .settings(
     name := "simplifier-plugin-base",
+    PublishToMavenCentral.settings,
     compileSettings,
 
     libraryDependencies ++= Seq(
