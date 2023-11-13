@@ -1,4 +1,4 @@
-ThisBuild / version := "0.9.0"
+ThisBuild / version := "0.9.1"
 
 ThisBuild / scalaVersion := "2.12.15"
 
@@ -18,6 +18,17 @@ lazy val root = (project in file("."))
     name := "simplifier-plugin-base",
     PublishToMavenCentral.settings,
     compileSettings,
+    licenses := Seq(
+      ("MIT", url("http://opensource.org/licenses/MIT"))
+    ),
+    pomExtra := (
+      <developers>
+        <developer>
+          <id>C-Schwemin</id>
+          <name>Christoph Schwemin</name>
+        </developer>
+      </developers>
+    ),
 
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-actor" % akkaV withSources() withJavadoc(),
