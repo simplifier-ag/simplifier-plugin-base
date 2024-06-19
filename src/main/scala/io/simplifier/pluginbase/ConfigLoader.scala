@@ -29,7 +29,7 @@ class ConfigLoader(args: Array[String], defaultLocation: String) {
     case Some(location) => SettingsNotFound(location)
   }
 
-  def loadConfig(): Config = getConfigSource.load()
+  def loadConfig(): Config = getConfigSource.load().resolve()
 
 
 }
