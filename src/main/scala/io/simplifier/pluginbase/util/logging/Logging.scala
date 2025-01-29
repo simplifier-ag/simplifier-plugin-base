@@ -1,5 +1,6 @@
 package io.simplifier.pluginbase.util.logging
 
+import com.google.common.base.CharMatcher.{inRange, is}
 import io.simplifier.pluginbase.util.logging.Logging.{CANONICAL, FULL, SIMPLE}
 import io.simplifier.pluginbase.util.technicalname.TechnicalNameReducer
 import org.slf4j.{Logger, LoggerFactory}
@@ -137,21 +138,22 @@ object Logging {
   private val LOG_PROPERTY_LOGFILE_BASENAME = "LOGFILE_BASENAME"
 
   /**
-   * Initializes the logging variable "LOGFILE_BASENAME" for the base filename of the logfile,
-   * which should give the default "simplifier" when Cluster Mode is disabled, and "simplifier-${ClusterMemberName}"
-   * when a cluster member is defined via Environment Variable (or System Property).<br/>
+   * Provide a system property 'LOGFILE_BASENAME' to be referenced by the internal logback.xml configuration file.
+   *
+   * It defines the basename part of a logfile for the current plugin. In case of cluster mode, a system property
+   * or environment variable named 'CLUSTER_MEMBER_NAME' may define a postfix to make the filename unique
+   * inside the shared log directory. <br/>
    * <b>This function should be called before the very first log output, so even before settings.conf parsing.</b>
    *
    * @param defaultBaseName Normal base name of the logfile (e.g, "simplifier" for "simplifier.log")
    */
-  def initializeClusterModeLoggingProperties(defaultBaseName: String): Unit = {
-    val clusterMemberNameOpt =
-      Option(System.getProperty(ENV_CLUSTER_MEMBER_NAME)).map(TechnicalNameReducer.reduceToTechnicalName).filter(_.nonEmpty) orElse
-        Option(System.getenv(ENV_CLUSTER_MEMBER_NAME)).map(TechnicalNameReducer.reduceToTechnicalName).filter(_.nonEmpty)
-    val logfileBasename = clusterMemberNameOpt match {
-      case Some(clusterMemberName) => s"$defaultBaseName-$clusterMemberName"
-      case None => defaultBaseName
-    }
+  def initializeLoggingProperties(defaultBaseName: String): Unit = {
+    val logfileBasename = Option(System.getProperty(ENV_CLUSTER_MEMBER_NAME))
+        .orElse(Option(System.getenv(ENV_CLUSTER_MEMBER_NAME)))
+        .map((inRange('a', 'z') or inRange('A', 'Z') or inRange('0', '9') or is('_')).retainFrom).filter(_.nonEmpty)
+        .map(clusterMemberName => s"$defaultBaseName-$clusterMemberName")
+        .getOrElse(defaultBaseName)
+
     System.setProperty(LOG_PROPERTY_LOGFILE_BASENAME, logfileBasename)
   }
 

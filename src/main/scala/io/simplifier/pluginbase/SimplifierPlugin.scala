@@ -38,7 +38,7 @@ abstract class SimplifierPluginLogic(pluginDescription: => PluginDescription,
                                      logfileBaseName: String) extends App with DeferredLogging {
 
   // This sets the logfile basename, so it must be called before the first Logger is initialized!
-  Logging.initializeClusterModeLoggingProperties(logfileBaseName)
+  Logging.initializeLoggingProperties(logfileBaseName)
 
   val pluginSecret:String
 
