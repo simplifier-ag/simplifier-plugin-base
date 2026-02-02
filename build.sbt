@@ -1,8 +1,8 @@
-ThisBuild / version := "1.0.2"
+ThisBuild / version := "2.0.0"
 
-ThisBuild / scalaVersion := "2.12.15"
+ThisBuild / scalaVersion := "2.12.21"
 
-ThisBuild / organization := "io.simplifier"
+ThisBuild / organization := "io.github.simplifierio"
 
 ThisBuild / useCoursier := true
 
@@ -18,6 +18,7 @@ lazy val root = (project in file("."))
     name := "simplifier-plugin-base",
     PublishToMavenCentral.settings,
     compileSettings,
+    libraryDependencySchemes += "org.scala-lang.modules" %% "scala-xml" % VersionScheme.Always,
     licenses := Seq(
       ("MIT", url("http://opensource.org/licenses/MIT"))
     ),
@@ -48,14 +49,14 @@ lazy val root = (project in file("."))
       "org.squeryl" %% "squeryl" % squerylV withSources() withJavadoc(),
       "org.flywaydb" % "flyway-core" % flywayV withSources() withJavadoc(),
       "ch.qos.logback" % "logback-classic" % "1.2.3" withSources() withJavadoc(),
-      "io.github.simplifier-ag" % "simplifier-plugin-api_2.12" % "0.6.0" withSources(),
+      "io.github.simplifierio" % "simplifier-plugin-api_2.12" % "1.0.0" withSources(),
       "org.scalatest" %% "scalatest" % "3.1.4" % "test" withSources() withJavadoc(),
       "ch.qos.logback" % "logback-classic" % "1.2.3" withSources() withJavadoc(),
       "org.mockito" %% "mockito-scala" % "1.17.7" % Test,
       "com.github.swagger-akka-http" %% "swagger-akka-http" % "0.13.0" withSources() withJavadoc() exclude("com.google.guava", "guava")
     ),
 
-    dependencyOverrides ++= akkaOverrides ++ netty3Overrides,
+    dependencyOverrides ++= netty3Overrides,
 
     assembly / test := {},
     assembly / aggregate := false,
@@ -71,13 +72,9 @@ lazy val flywayV = "7.15.0"
 lazy val commonsDbcpV = "2.1.1"
 
 lazy val configV = "1.4.2"
-lazy val akkaV = "2.6.20"
-lazy val akkaHttpV = "10.2.10"
+lazy val akkaV = "2.8.6"
+lazy val akkaHttpV = "10.5.3"
 
-lazy val akkaOverrides = Seq(
-  "com.typesafe.akka" %% "akka-actor" % akkaV,
-  "com.typesafe.akka" %% "akka-stream" % akkaV
-)
 lazy val netty3Overrides = Seq(
   "io.netty" % "netty" % "3.10.6.Final"
 )
