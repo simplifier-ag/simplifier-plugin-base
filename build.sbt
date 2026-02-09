@@ -1,8 +1,8 @@
-ThisBuild / version := "1.0.2"
+ThisBuild / version := "1.0.3"
 
 ThisBuild / scalaVersion := "2.12.15"
 
-ThisBuild / organization := "io.simplifier"
+ThisBuild / organization := "io.github.simplifier-ag"
 
 ThisBuild / useCoursier := true
 
