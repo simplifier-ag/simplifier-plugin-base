@@ -1,4 +1,4 @@
-ThisBuild / version := "2.0.1"
+ThisBuild / version := "2.0.2"
 
 ThisBuild / scalaVersion := "2.12.21"
 
@@ -68,7 +68,7 @@ lazy val jodaV = "2.10"
 lazy val guavaV = "32.1.1-jre"
 lazy val jimFsV = "1.1"
 lazy val squerylV = "0.9.5-7"
-lazy val flywayV = "7.15.0"
+lazy val flywayV = "12.0.0"
 lazy val commonsDbcpV = "2.1.1"
 
 lazy val configV = "1.4.2"
