@@ -1,4 +1,4 @@
-ThisBuild / version := "2.0.2"
+ThisBuild / version := "2.0.3"
 
 ThisBuild / scalaVersion := "2.12.21"
 
@@ -48,6 +48,8 @@ lazy val root = (project in file("."))
       "org.apache.commons" % "commons-dbcp2" % commonsDbcpV withSources() withJavadoc(),
       "org.squeryl" %% "squeryl" % squerylV withSources() withJavadoc(),
       "org.flywaydb" % "flyway-core" % flywayV withSources() withJavadoc(),
+      "org.flywaydb" % "flyway-mysql" % flywayV,
+      "org.flywaydb" % "flyway-database-oracle" % flywayV,
       "ch.qos.logback" % "logback-classic" % "1.2.3" withSources() withJavadoc(),
       "io.github.simplifierio" % "simplifier-plugin-api_2.12" % "1.0.0" withSources(),
       "org.scalatest" %% "scalatest" % "3.1.4" % "test" withSources() withJavadoc(),
