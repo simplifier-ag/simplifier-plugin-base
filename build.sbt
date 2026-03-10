@@ -1,4 +1,4 @@
-ThisBuild / version := "1.0.3"
+ThisBuild / version := "1.0.4"
 
 ThisBuild / scalaVersion := "2.12.15"
 
@@ -47,6 +47,8 @@ lazy val root = (project in file("."))
       "org.apache.commons" % "commons-dbcp2" % commonsDbcpV withSources() withJavadoc(),
       "org.squeryl" %% "squeryl" % squerylV withSources() withJavadoc(),
       "org.flywaydb" % "flyway-core" % flywayV withSources() withJavadoc(),
+      "org.flywaydb" % "flyway-mysql" % flywayV,
+      "org.flywaydb" % "flyway-database-oracle" % flywayV,
       "ch.qos.logback" % "logback-classic" % "1.2.3" withSources() withJavadoc(),
       "io.github.simplifier-ag" % "simplifier-plugin-api_2.12" % "0.6.0" withSources(),
       "org.scalatest" %% "scalatest" % "3.1.4" % "test" withSources() withJavadoc(),
@@ -67,7 +69,7 @@ lazy val jodaV = "2.10"
 lazy val guavaV = "32.1.1-jre"
 lazy val jimFsV = "1.1"
 lazy val squerylV = "0.9.5-7"
-lazy val flywayV = "7.15.0"
+lazy val flywayV = "12.0.3"
 lazy val commonsDbcpV = "2.1.1"
 
 lazy val configV = "1.4.2"
