@@ -1,4 +1,4 @@
-ThisBuild / version := "2.0.3"
+ThisBuild / version := "2.1.0"
 
 ThisBuild / scalaVersion := "2.12.21"
 
@@ -51,7 +51,7 @@ lazy val root = (project in file("."))
       "org.flywaydb" % "flyway-mysql" % flywayV,
       "org.flywaydb" % "flyway-database-oracle" % flywayV,
       "ch.qos.logback" % "logback-classic" % "1.2.3" withSources() withJavadoc(),
-      "io.github.simplifierio" % "simplifier-plugin-api_2.12" % "1.0.0" withSources(),
+      "io.github.simplifierio" % "simplifier-plugin-api_2.12" % "1.1.0" withSources(),
       "org.scalatest" %% "scalatest" % "3.1.4" % "test" withSources() withJavadoc(),
       "ch.qos.logback" % "logback-classic" % "1.2.3" withSources() withJavadoc(),
       "org.mockito" %% "mockito-scala" % "1.17.7" % Test,
